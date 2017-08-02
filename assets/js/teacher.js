@@ -5,7 +5,7 @@ var s=new Array();
 s.push('btn-danger');
 s.push('btn-success');
 var messageList=document.getElementById('message-list');
-var allList=document.getElementById('all-list');
+var allListadmin=document.getElementById('all-list-admin');
 var object_no;
 var noList=document.getElementById('no-list');
 var student_name;
@@ -29,13 +29,13 @@ if(which!=null){
 		jsonpCallback:"callback",
 		success: function (json_str) {
 			object_js = json_str;
-			showAllList();
+			showAllListadmin();
 		}
 	});
 }
 
-function showAllList(){
-	$('#all-list tr').remove();
+function showAllListadmin(){
+	$('#all-list-admin tr').remove();
 	var size=0,key;
 	var statuses=new Array();
 	var names=new Array();
@@ -46,6 +46,7 @@ function showAllList(){
 			size++;
 		}
 	}
+	
 	var i=0;
 	for(i=0;i<size;){
 		var tr=document.createElement('tr');
@@ -65,7 +66,7 @@ function showAllList(){
 			tr.appendChild(td);
 			i++;
 		}while(i%7!=0);
-		allList.appendChild(tr);
+		allListadmin.appendChild(tr);
 	}
 }
 function student_message(which){
@@ -78,7 +79,7 @@ changeMessage();
 
 function changeMessage(){
 	$.ajax({
-		url: 'http://192.168.1.109:9000/admin/list', //在这里提填写你的地址
+		url: 'http://192.168.1.100:9000/admin/list', //在这里提填写你的地址
 		async: false,
 		dataType: 'jsonp',
 		data:{'student_name':student_name},
@@ -129,16 +130,16 @@ function showMessageList(){
 		var address_mac = student['address_mac'];
 		var connect_time = student['connect_time'];
 		var break_time = student['break_time'];
-		var status = student['status'];
-                var date = student['date']
+		var student_status = student['status'];
+        var date = student['date']
 		var remarks = student['remarks'];
 		createInfo(name, tr);
 		createInfo(student_id, tr);
 		createInfo(class_id, tr);
 		createInfo(address_mac, tr);
-		createInfo(connect_mac, tr);
+		createInfo(connect_time, tr);
 		createInfo(break_time, tr);
-		createInfo(status, tr);
+		createInfo(student_status, tr);
 		createInfo(date, tr);
 		createInfo(remarks, tr);
 		messageList.appendChild(tr);

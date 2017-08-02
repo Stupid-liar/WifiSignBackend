@@ -348,7 +348,7 @@
 		</div>
 		<!--添加人员名单-->
 		<div style="margin-top: 0px;background-color: white" id="classList" class='col-md-12 col-sm-12 col-xs-12' style='padding: 30px; position: static' >
-                <h2 style='display: inline;'> <img src="../assets/img/群众.png" height="50" width="50"/>&emsp;<span id="class"style="font-size:35px;">12</span>班人员名单：</h2>
+                <h2 style='display: inline;'> <img src="../assets/img/群众.png" height="50" width="50"/>&emsp;<span id="class" style="font-size:35px;">12</span>班人员名单：</h2>
 				<div>
 					<table class="table table-striped table-hover">
 						<thead>
@@ -362,7 +362,7 @@
 								<th>姓名</th>
 							</tr>
 						</thead>
-						<tbody id='all-list'>
+						<tbody id='all-list-admin'>
 						</tbody>
 					</table>
 				</div>
@@ -448,6 +448,7 @@
                 size++;
             }
         }
+		
         var i=0;
         for(i=0;i<size;){
             var tr=document.createElement('tr');
