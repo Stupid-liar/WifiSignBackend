@@ -123,22 +123,24 @@ function showMessageList(){
 		student = students_list[i];
 		var info_list = new Array();
 		var tr=document.createElement('tr');
-		var student_name = student['student_name'];
+		var name = student['name'];
 		var student_id = student['student_id'];
-		var number = student['number'];
-		var date = student['date'];
-		var time_start = student['time_start'];
-		var time_end = student['time_end'];
-		var time = student['time'];
+		var class_id = student['class_id'];
+		var address_mac = student['address_mac'];
+		var connect_time = student['connect_time'];
+		var break_time = student['break_time'];
+		var status = student['status'];
+                var date = student['date']
 		var remarks = student['remarks'];
-		createInfo(number,tr);
-		createInfo(student_name,tr);
-		createInfo(student_id,tr);
-		createInfo(date,tr);
-		createInfo(time_start,tr);
-		createInfo(time_end,tr);
-		createInfo(time,tr);
-		createInfo(remarks,tr);
+		createInfo(name, tr);
+		createInfo(student_id, tr);
+		createInfo(class_id, tr);
+		createInfo(address_mac, tr);
+		createInfo(connect_mac, tr);
+		createInfo(break_time, tr);
+		createInfo(status, tr);
+		createInfo(date, tr);
+		createInfo(remarks, tr);
 		messageList.appendChild(tr);
 	}
 }

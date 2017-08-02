@@ -421,15 +421,19 @@
 		$("#teacher").css("display","block");
 	}
     function check_stu(){
-        $.ajax({
-            url: '/main_page/data', //在这里提填写你的地址
-            async: true,
-            dataType: 'text',
-            success: function (json_str) {
-                object_js=JSON.parse(json_str);
-                showAllList();
-            }  
-        });
+       $.ajax({
+		url: 'http://192.168.1.100:9000/main_page/front/data', //在这里提填写你的地址
+		async: false,
+		dataType: 'jsonp',
+		type:'get',
+		jsonp:"callback", 
+		crossDomain: true,
+		jsonpCallback:"callback",
+		success: function (json_str) {
+			object_js = json_str;
+			showAllList();
+		}
+	});
     }
     
     function showAllList(){
