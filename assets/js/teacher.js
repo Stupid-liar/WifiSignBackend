@@ -9,7 +9,7 @@ var allListadmin=document.getElementById('all-list-admin');
 var object_no;
 var noList=document.getElementById('no-list');
 var student_name;
-class_number=12;
+class_number=1718011;
 function changeClass(which){
 if(which!=null){
 	class_number = $(which).text();
@@ -19,7 +19,7 @@ if(which!=null){
 	span.innerHTML = class_number;
  }
 	$.ajax({
-		url: 'http://192.168.1.100:9000/main_page/front/data', //在这里提填写你的地址
+		url: 'http://119.29.184.156:9000/main_page/front/data', //在这里提填写你的地址
 		async: false,
 		dataType: 'jsonp',
 		data:{'class_number':class_number},
@@ -97,15 +97,15 @@ function createInfo(text,tr){
 	var td=document.createElement('td');
 	var btn=document.createElement('a');
 	$(td).css("padding","0px");
-	$(td).css("margin-top","-2px");
+	$(td).css("margin-top","0px");
 	btn.innerHTML=text;
 	$(btn).attr('href','#');
 	$(btn).addClass('btn');
 	$(btn).css('width','100%');
 	$(btn).css('height','100%');
-	$(btn).css('background-color','white');
+	$(btn).css('background','white');
 	$(btn).css('color','black');
-	$(btn).css('border-color','black');
+	$(btn).css('border','1px solid black');
 	$(btn).css('border-radius','0');
 	var maxNum=$(btn).html();
 		if(maxNum.length>15){
