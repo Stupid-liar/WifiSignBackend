@@ -17,22 +17,7 @@
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<style>
-	#danmuarea {
-		position: relative;
-		<!--background-image:url('static/img/1.jpg');-->
-		no-repeat top left scroll;
-		background-size:contain;
-		width:791px;
-		height: 445px;
-		margin-left: auto;
-		margin-right: auto;
-	}
-	.ctr {
-		font-size: 1em;
-		  line-height: 2em;
-	}
-    button{
-           margin: -2px;
+	
         }
 	</style>
 </head>
@@ -391,13 +376,13 @@
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
-								<th>序号</th>
 								<th>姓名</th>
 								<th>学号</th>
-								<th>日期</th>
+								<th>班级</th>
+								<th>MAC地址</th>
 								<th>连接时间</th>
 								<th>断开时间</th>
-								<th>连接时长</th>
+								<th>日期</th>
 								<th>备注</th>
 							</tr>
 						</thead>
@@ -530,13 +515,13 @@
     var noList=document.getElementById('no-list'); 
     function check_stu(){
        $.ajax({
-		url: 'http://119.29.184.156:9000/main_page/front/data', //在这里提填写你的地址
+		url: 'http://119.29.184.156:9000/main_page/student_connect_status/data', //在这里提填写你的地址
 		async: false,
 		dataType: 'jsonp',
 		type:'get',
-		jsonp:"callback", 
+		jsonp:"callback_teacher", 
 		crossDomain: true,
-		jsonpCallback:"callback",
+		jsonpCallback:"callback_teacher",
 		success: function (json_str) {
 			object_js = json_str;
 			showAllList();

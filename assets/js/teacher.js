@@ -19,14 +19,14 @@ if(which!=null){
 	span.innerHTML = class_number;
  }
 	$.ajax({
-		url: 'http://119.29.184.156:9000/main_page/front/data', //在这里提填写你的地址
+		url: 'http://119.29.184.156:9000/admin/student_connect_status/data', //在这里提填写你的地址
 		async: false,
 		dataType: 'jsonp',
 		data:{'class_number':class_number},
 		type:'get',
-		jsonp:"callback", 
+		jsonp:"callback_admin", 
 		crossDomain: true,
-		jsonpCallback:"callback",
+		jsonpCallback:"callback_admin",
 		success: function (json_str) {
 			object_js = json_str;
 			showAllListadmin();
@@ -79,14 +79,14 @@ changeMessage();
 
 function changeMessage(){
 	$.ajax({
-		url: 'http://192.168.1.100:9000/admin/list', //在这里提填写你的地址
+		url: 'http://119.29.184.156:9000/admin/list', //在这里提填写你的地址
 		async: false,
 		dataType: 'jsonp',
 		data:{'student_name':student_name},
 		type:'get',
-		jsonp:"callback", 
+		jsonp:"callback_info", 
 		crossDomain: true,
-		jsonpCallback:"callback",
+		jsonpCallback:"callback_info",
 		success: function (json_str) {
 			object_js = json_str;
 			showMessageList();
@@ -139,7 +139,6 @@ function showMessageList(){
 		createInfo(address_mac, tr);
 		createInfo(connect_time, tr);
 		createInfo(break_time, tr);
-		createInfo(student_status, tr);
 		createInfo(date, tr);
 		createInfo(remarks, tr);
 		messageList.appendChild(tr);
