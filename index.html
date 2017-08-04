@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="./assets/css/main.css">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
 	<link rel="stylesheet" href="./assets/css/demo.css">
+	<link rel="stylesheet" href="./static/css/main.css">
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<style>
@@ -440,12 +441,12 @@
                                     </div>
                                     <button style="width: 22px;height: 25px;line-height: 10px;text-align: center" onclick="picChangeRight(this)"> ></button>
                                 </div>
-                                <div class="text-center ctr" style="position: absolute;top:690px;margin: 5px;">
+                                <div class="text-center ctr" style="position: absolute;top:690px;margin: 5px;width: 100%;">
                                     <button type="button"  onclick="resumer() ">开始</button>&nbsp;
                                     <button type="button"  onclick="showBarrage() ">重放</button>
-                                    <button type="button"  onclick="pauser()">暂停</button>  &nbsp;&nbsp;&nbsp;&nbsp;
-                                    开关:<input type='checkbox' checked='checked' id='ishide' value='is' onchange='changehide()'> &nbsp;&nbsp;&nbsp;&nbsp;
-                                    透明度:<input type="range" name="op" id="op" onchange="op()" value="50">
+                                    <button type="button"  onclick="pauser()">暂停</button>  &nbsp;
+                                    开关:<input type='checkbox' checked='checked' id='ishide' value='is' onchange='changehide()'> &nbsp;
+                                    透明度:<input type="range" name="op" id="op" onchange="op()" value="50"style="width:100px;display:inline-block;vertical-align:middle;">
                                     <select  name="color" id="color" >
                                         <option value="white">白色</option>
                                         <option value="red">红色</option>
@@ -484,216 +485,217 @@
 	<div class="main" id="matter9" style="display: none">sdkjafiuaiviawviwqv</div>
 </div>
 	<!-- END WRAPPER -->
-	<!-- Javascript -->
-	<script src="./assets/js/jquery/jquery.min.js"></script>
-	<script src="./assets/js/bootstrap.min.js"></script>
-	<script src="./assets/js/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="./assets/js/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-	<script src="./assets/js/chartist/js/chartist.min.js"></script>
-	<!--添加js-->
-	<script src="./static/js/jquery.js"></script>
-	<script src="./static/js/jquery-1.11.1.min.js"></script>
-	<script src="./static/js/bootstrap.min.js"></script>
-	<script src='./static/js/Chart.js'></script>
-	<!-- <script src='/static/js/highcharts.js'></script>有问题的引用 -->
-	<!--添加老师js-->
-	<script src='./assets/js/teacher.js'></script>
-	<!--添加侧边栏js-->
-	<script src='./assets/js/side.js'></script>
-	<!--添加弹幕js-->
-	<script src='./assets/js/danmu.js'></script>
-	<script src="./static/js/jquery.danmu.js"></script>
-	<!--添加js结束-->
-	<script>
-    //对学生名单以及未到学生名单的展示
-    var object_js;
-    var s=new Array();
-    s.push('btn-danger');
-    s.push('btn-success');
-    var allList=document.getElementById('all-list');
-    var object_no;
-    var noList=document.getElementById('no-list'); 
-    function check_stu(){
-       $.ajax({
-		url: 'http://119.29.184.156:9000/main_page/student_connect_status/data', //在这里提填写你的地址
-		async: false,
-		dataType: 'jsonp',
-		type:'get',
-		jsonp:"callback_teacher", 
-		crossDomain: true,
-		jsonpCallback:"callback_teacher",
-		success: function (json_str) {
-			object_js = json_str;
-			showAllList();
+<!-- Javascript -->
+<script src="./assets/js/jquery/jquery.min.js"></script>
+<script src="./assets/js/bootstrap.min.js"></script>
+<script src="./assets/js/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="./assets/js/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+<script src="./assets/js/chartist/js/chartist.min.js"></script>
+<!--添加js-->
+<script src="./static/js/jquery.js"></script>
+<script src="./static/js/jquery-1.11.1.min.js"></script>
+<script src="./static/js/bootstrap.min.js"></script>
+<script src='./static/js/Chart.js'></script>
+<!-- <script src='/static/js/highcharts.js'></script>有问题的引用 -->
+<!--添加老师js-->
+<script src='./assets/js/teacher.js'></script>
+<!--添加侧边栏js-->
+<script src='./assets/js/side.js'></script>
+<!--添加弹幕js-->
+<script src='./assets/js/danmu.js'></script>
+<script src="./static/js/jquery.danmu.js"></script>
+<!--添加js结束-->
+<script>
+	//对学生名单以及未到学生名单的展示
+		var object_js;
+		var s=new Array();
+		s.push('btn-danger');
+		s.push('btn-success');
+		var allList=document.getElementById('all-list');
+		var object_no;
+		var noList=document.getElementById('no-list'); 
+		function check_stu(){
+		   $.ajax({
+			url: 'http://119.29.184.156:9000/main_page/student_connect_status/data', //在这里提填写你的地址
+			async: false,
+			dataType: 'jsonp',
+			type:'get',
+			jsonp:"callback_teacher", 
+			crossDomain: true,
+			jsonpCallback:"callback_teacher",
+			success: function (json_str) {
+				object_js = json_str;
+				showAllList();
+			}
+		});
 		}
-	});
-    }
-    
-    function showAllList(){
-        $('#all-list tr').remove();
-        var size=0,key;
-        var statuses=new Array();
-        var names=new Array();
-        for(key in object_js){
-            if(object_js.hasOwnProperty(key)){
-                names.push(key);
-                statuses.push(object_js[key]);
-                size++;
-            }
-        }
 		
-        var i=0;
-        for(i=0;i<size;){
-            var tr=document.createElement('tr');
-            do{
-                if(i>=size){
-                    break;
-                }
-                var td=document.createElement('td');
-                var btn=document.createElement('a');
-                btn.innerHTML=names[i];
-                $(btn).attr('href','#');
-                $(btn).addClass('btn');
-                $(btn).css('width','100%');
-                $(btn).addClass(s[statuses[i]]);
-                td.appendChild(btn);
-                tr.appendChild(td);
-                i++;
-            }while(i%7!=0);
-            allList.appendChild(tr);
-        }
-    }
-    check_stu();
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    setInterval('check_stu()',3000);//6000是间隔时间  单位为毫秒 6000就是一分钟
-    function check_stu_no(){
-        $.ajax({
-            url: '',
-            async: true,
-            dataType: 'text',
-            success: function (json_str) {
-                object_no=JSON.parse(json_str);
-                showNoList();
-            }  
-        });
-    }
-    
-    function showNoList(){
-        $('#no-list tr').remove();
-        var size=0;
-        var names=new Array();
-        for(var key in object_no){
-            if(object_no.hasOwnProperty(key)){
-                names.push(key);
-                size++;
-            }
-        }
-        for(var i=0;i<size;i++){
-            var tr=document.createElement('tr');
-            var td1=document.createElement('td');
-            var td2=document.createElement('td');
-            $(tr).addClass('danger');
-            td1.innerHTML=names[i];
-            td2.innerHTML='未签到';
-            tr.appendChild(td1);
-            tr.appendChild(td2);
-            noList.appendChild(tr);
-        }
-    }
-    
-    check_stu_no()
-    setInterval('check_stu_no()',60000);
-	
-    var allRefresh=$('#all-refresh');
-    var noRefresh=$('#no-refresh');
-    allRefresh.click(function(){showAllList();});
-    noRefresh.click(function(){showNoList();});
-    //对三个图表的展示
-    //第一个图
-    var data_avg=new Array();//平均到课率
-    var data_my=new Array();//老师自己的课的到课率
- 
-    function classPercentage_avg(){
-        var json_str='{"1":75,"2":80,"3":85,"4":89}';//这里是需要填写的json数据，格式是 "第几周":到课率
-        var json_obj=JSON.parse(json_str);
-        var data=new Array()
-        for(var i in json_obj){
-            data.push(json_obj[i]);
-        }
-        return data;
-    }
-    
-    function classPercentage_my(){
-        var json_str='{"1":80,"2":85,"3":95,"4":90}';//这里是需要填写的json数据，格式是 "第几周":到课率
-        var json_obj=JSON.parse(json_str);
-        var data=new Array()
-        for(var i in json_obj){
-            data.push(json_obj[i]);
-        }
-        return data;
-    }
-    data_avg=classPercentage_avg();
-    data_my=classPercentage_my();
-    
-    $('#chart1').highcharts({
-        title:{
-            text:"到课率"
-        },
-        xAxis: {
-            title:{
-                text:'周数'
-            },
-            categories: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
-        },
-        yAxis:{
-            title:{
-                text:'到课百分比'
-            }
-        },
-        plotOptions: {
-            series: {
-                dataLabels: {
-                    enabled: true,
-                    format: '{y}%',
-                }
-            }
-        },
-        series: [{
-            name:'平均到课率',
-            data: data_avg
-        },
-        {
-            name:"您的到课率",
-            data:data_my
-        }]
-    });
-    
-    //到课率较高的学生
-    var hrefs=new Array();
-    var names=new Array();
-    var all=new Array();
-    var stus_good=$('#chart2 ul.list-group li.list-group-item');
-    
-    function suggestStu(){
-        var json_str='{"小明":"./1.html","小李":"./2.html","小王":"./3.html","小吴":"./4.html","小赵":"./5.html","小黄":"./6.html","小钱":"./7.html"}';//这里是需要填写的json数据，格式是 "学生姓名":"学生主页的链接"
-        var json_obj=JSON.parse(json_str);
-        var names=new Array();
-        var hrefs=new Array();
-        for(var i in json_obj){
-            names.push(i);
-            hrefs.push(json_obj[i]);
-        }
-        return new Array(names,hrefs);
-    }
-    all=suggestStu();
-    names=all[0];
-    hrefs=all[1];
-    stus_good.html(
-        function(index,obj_j){
-            stus_good.eq(index).html("<a class='btn btn-default' style='width:100%;border-style:none;' href='"+hrefs[index]+"'><span class='glyphicon glyphicon-user pull-left'></span>"+names[index]+"</a>");
-        }
-    );     
+		function showAllList(){
+			$('#all-list tr').remove();
+			var size=0,key;
+			var statuses=new Array();
+			var names=new Array();
+			for(key in object_js){
+				if(object_js.hasOwnProperty(key)){
+					names.push(key);
+					statuses.push(object_js[key]);
+					size++;
+				}
+			}
+			
+			var i=0;
+			for(i=0;i<size;){
+				var tr=document.createElement('tr');
+				do{
+					if(i>=size){
+						break;
+					}
+					var td=document.createElement('td');
+					var btn=document.createElement('a');
+					btn.innerHTML=names[i];
+					$(btn).attr('href','#');
+					$(btn).addClass('btn');
+					$(btn).css('width','100%');
+					$(btn).addClass(s[statuses[i]]);
+					td.appendChild(btn);
+					tr.appendChild(td);
+					i++;
+				}while(i%7!=0);
+				allList.appendChild(tr);
+			}
+		}
+		check_stu();
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		setInterval('check_stu()',3000);//6000是间隔时间  单位为毫秒 6000就是一分钟
+		function check_stu_no(){
+			$.ajax({
+				url: '',
+				async: true,
+				dataType: 'text',
+				success: function (json_str) {
+					object_no=JSON.parse(json_str);
+					showNoList();
+				}  
+			});
+		}
+		
+		function showNoList(){
+			$('#no-list tr').remove();
+			var size=0;
+			var names=new Array();
+			for(var key in object_no){
+				if(object_no.hasOwnProperty(key)){
+					names.push(key);
+					size++;
+				}
+			}
+			for(var i=0;i<size;i++){
+				var tr=document.createElement('tr');
+				var td1=document.createElement('td');
+				var td2=document.createElement('td');
+				$(tr).addClass('danger');
+				td1.innerHTML=names[i];
+				td2.innerHTML='未签到';
+				tr.appendChild(td1);
+				tr.appendChild(td2);
+				noList.appendChild(tr);
+			}
+		}
+		
+		check_stu_no()
+		setInterval('check_stu_no()',60000);
+		
+		var allRefresh=$('#all-refresh');
+		var noRefresh=$('#no-refresh');
+		allRefresh.click(function(){showAllList();});
+		noRefresh.click(function(){showNoList();});
+		//对三个图表的展示
+		//第一个图
+		var data_avg=new Array();//平均到课率
+		var data_my=new Array();//老师自己的课的到课率
+	 
+		function classPercentage_avg(){
+			var json_str='{"1":75,"2":80,"3":85,"4":89}';//这里是需要填写的json数据，格式是 "第几周":到课率
+			var json_obj=JSON.parse(json_str);
+			var data=new Array()
+			for(var i in json_obj){
+				data.push(json_obj[i]);
+			}
+			return data;
+		}
+		
+		function classPercentage_my(){
+			var json_str='{"1":80,"2":85,"3":95,"4":90}';//这里是需要填写的json数据，格式是 "第几周":到课率
+			var json_obj=JSON.parse(json_str);
+			var data=new Array()
+			for(var i in json_obj){
+				data.push(json_obj[i]);
+			}
+			return data;
+		}
+		data_avg=classPercentage_avg();
+		data_my=classPercentage_my();
+		
+		$('#chart1').highcharts({
+			title:{
+				text:"到课率"
+			},
+			xAxis: {
+				title:{
+					text:'周数'
+				},
+				categories: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]
+			},
+			yAxis:{
+				title:{
+					text:'到课百分比'
+				}
+			},
+			plotOptions: {
+				series: {
+					dataLabels: {
+						enabled: true,
+						format: '{y}%',
+					}
+				}
+			},
+			series: [{
+				name:'平均到课率',
+				data: data_avg
+			},
+			{
+				name:"您的到课率",
+				data:data_my
+			}]
+		});
+		
+		//到课率较高的学生
+		var hrefs=new Array();
+		var names=new Array();
+		var all=new Array();
+		var stus_good=$('#chart2 ul.list-group li.list-group-item');
+		
+		function suggestStu(){
+			var json_str='{"小明":"./1.html","小李":"./2.html","小王":"./3.html","小吴":"./4.html","小赵":"./5.html","小黄":"./6.html","小钱":"./7.html"}';//这里是需要填写的json数据，格式是 "学生姓名":"学生主页的链接"
+			var json_obj=JSON.parse(json_str);
+			var names=new Array();
+			var hrefs=new Array();
+			for(var i in json_obj){
+				names.push(i);
+				hrefs.push(json_obj[i]);
+			}
+			return new Array(names,hrefs);
+		}
+		all=suggestStu();
+		names=all[0];
+		hrefs=all[1];
+		stus_good.html(
+			function(index,obj_j){
+				stus_good.eq(index).html("<a class='btn btn-default' style='width:100%;border-style:none;' href='"+hrefs[index]+"'><span class='glyphicon glyphicon-user pull-left'></span>"+names[index]+"</a>");
+			}
+		);     
 </script>
+
 <script type="text/javascript">
                         // 基于准备好的dom，初始化echarts实例
                         var myChart = echarts.init(document.getElementById('main'));
@@ -728,6 +730,7 @@
                         // 使用刚指定的配置项和数据显示图表。
                         myChart.setOption(option);
 </script>
+
 <script>
 	$(function() {
 		var data, options;
@@ -836,7 +839,364 @@
 		}
 
 	});
-	</script>
-	
+</script>
+<！--添加弹幕-->
+<script>
+	(function(){
+	$("#danmu").danmu({
+	left:0,
+	top:0,
+	height:"100%",
+	width:"100%",
+    speed:30000,
+    opacity:1,
+    font_size_small:16,
+    font_size_big:24,
+    top_botton_danmu_time:6000
+	}
+	  );
+	})(jQuery);
+		query();
+		timedCount();
+		var first=true;
+
+	function timedCount() {
+	   $("#time").text($('#danmu').data("nowtime"));
+	   t=setTimeout("timedCount()",50);
+		}
+
+	function starter(){
+	  $('#danmu').danmu('danmu_start');
+	}
+
+	function pauser(){
+	  $('#danmu').danmu('danmu_pause');
+	}
+
+	function resumer(){
+	  $('#danmu').danmu('danmu_resume');
+	}
+
+	function stoper(){
+	  $('#danmu').danmu('danmu_stop');
+	}
+
+	function getime(){
+	  alert($('#danmu').data("nowtime"));
+	}
+
+	function getpaused(){
+	  alert($('#danmu').data("paused"));
+	}
+
+	function add(){
+	var newd={"text":"new2" , "color":"green" ,"size":"1","position":"0","time":60};
+	  $('#danmu').danmu("add_danmu",newd);
+	}
+
+	function insert(){
+	  var newd= { "text":"new2" , "color":"green" ,"size":"1","position":"0","time":50};
+	  str_newd=JSON.stringify(newd);
+	  $.post("stone.php",{danmu:str_newd},function(data,status){alert(data)});
+	}
+
+	function query() {
+	  $.get("query.php",function(data,status){
+		 var danmu_from_sql=eval(data);
+		 for (var i=0;i<danmu_from_sql.length;i++){
+		  var danmu_ls=eval('('+danmu_from_sql[i]+')');
+		  $('#danmu').danmu("add_danmu",danmu_ls);
+		 }
+	  });
+	}
+
+	function ajaxSendBarrage(text,barrage_time) {
+			var file_path = $('#ppt_hold').css('background-image')
+			var splits = file_path.split('/')
+			var ppt_name = splits[splits.length-2]
+			var data = {
+			"text": text,
+			"time": barrage_time,
+			"ppt_name":ppt_name
+			}
+			$.ajax({
+			type: 'POST',
+			url: './api/ppt_barrage',
+			async: false,
+			data: data,
+			dataType: 'json',
+			});
+			}
+
+	function ajaxShowDbBarrage() {
+		var file_path = $('#ppt_hold').css('background-image');
+		var splits = file_path.split('/');
+		var ppt_name = splits[splits.length-2];
+		var data = {"ppt_name":ppt_name
+		};
+			$.ajax({
+			type: 'POST',
+			url: './api/ppt_barrage/db',
+			async: false,
+			data: data,
+			dataType: 'json',
+			success: function(data) {
+				var barrages = data['barrages'];
+				for(var barrage in barrages){
+					var barrage_text = barrages[barrage].barrage_text;
+					var barrage_time = barrages[barrage].barrage_time;
+					var oPNode = document.getElementById('danmu_list');//获取p节点的对象
+					var node = document.createElement('p');//创建一个文本节点
+					node.innerHTML = barrage_time+"&nbsp;&nbsp;&nbsp;&nbsp;"+barrage_text;//文本内容
+					oPNode.appendChild(node);//将创建的文本内容插入到p节点中,追加方式
+					showDbBarrage(barrage_text);
+				}
+			}
+			});
+
+
+	}
+
+	function send(){
+	  var text = document.getElementById('text').value;
+	  var color = document.getElementById('color').value;
+	  var position = document.getElementById('position').value;
+	  var time = $('#danmu').data("nowtime")+5;
+	  var size =document.getElementById('text_size').value;
+	  var text_obj='{ "text":"'+text+'","color":"'+color+'","size":"'+size+'","position":"'+position+'","time":'+time+'}';
+	  $.post("stone.php",{danmu:text_obj});
+	  var text_obj='{ "text":"'+text+'","color":"'+color+'","size":"'+size+'","position":"'+position+'","time":'+time+',"isnew":""}';
+	  var new_obj=eval('('+text_obj+')');
+	  $('#danmu').danmu("add_danmu",new_obj);
+	  document.getElementById('text').value='';
+	  var today=new Date();
+	  var month=today.getMonth();
+	  month=month>9?month:"0"+month;
+	  var date=today.getDate();
+	  date=date>9?date:"0"+date;
+	  var hour=today.getHours();
+	  hour=hour>9?hour:"0"+hour;
+	  var min=today.getMinutes();
+	  min=min>9?min:"0"+min;
+	  var sec=today.getSeconds();
+		sec=sec>9?sec:"0"+sec;
+	  var s=today.getFullYear()+"-"+month+"-"+date+" "+hour+":"+min+":"+sec+" ";
+
+	  ajaxSendBarrage(text,s);
+	  var oPNode = document.getElementById('danmu_list');//获取p节点的对象
+	  var node = document.createElement('p');//创建一个文本节点
+	  node.innerHTML = s+"&nbsp;&nbsp;&nbsp;&nbsp;"+text ;//文本内容
+	  oPNode.appendChild(node);//将创建的文本内容插入到p节点中,追加方式
+
+	}
+
+
+	function sc()
+	{
+	var e=document.getElementById("div1")
+	e.scrollTop=e.scrollHeight;
+	}
+	var s=setInterval("sc()",200);
+
+	function op(){
+	var op=document.getElementById('op').value;
+	 $('#danmu').data("opacity",op);
+	}
+
+	function changehide() {
+		var op = document.getElementById('op').value;
+		op = op / 100;
+		if (document.getElementById("ishide").checked) {
+			jQuery('#danmu').data("opacity", op);
+			jQuery(".flying").css({
+				"opacity": op
+			});
+		} else {
+			jQuery('#danmu').data("opacity", 0);
+			jQuery(".flying").css({
+				"opacity": 0
+			});
+		}
+	}
+
+	function settime(){
+		var t=document.getElementById("set_time").value;
+		t=parseInt(t)
+		console.log(t)
+		$('#danmu').data("nowtime",t);
+	}
+</script>
+
+<script>
+    var folds_size = 0;
+    /*
+    PPT页数向左翻页
+     */
+
+	function picChangeLeft(which) {
+		var ppt_hold = document.getElementById('ppt_hold');
+		var title = ppt_hold.getAttribute('title');
+		var pic_num = parseInt(title);
+		if(pic_num - 1 < 0){
+			pic_num = 0;
+		}
+		else{
+			pic_num -= 1;
+		}
+		ppt_hold.setAttribute('title',pic_num.toString());
+		var url_path = $('#ppt_hold').css('background-image');
+		var oppo_path = url_path.match('ppt_barrage/(.*?)"')[1];
+		oppo_path = oppo_path.replace(/[0-9]\d*.jpg/,pic_num.toString() + '.jpg');
+		var command = './' + oppo_path;
+		command = 'url("' + command + '")';
+		$('#ppt_hold').css('background-image',command);
+		var input=document.getElementById("input");
+		input.value=pic_num + 1;
+	}
+		/*
+		PPT页数向右翻页
+		 */
+	function picChangeRight(which) {
+
+
+		var ppt_hold = document.getElementById('ppt_hold');
+		var title = ppt_hold.getAttribute('title');
+		var pic_num = parseInt(title);
+		if(pic_num + 1 >= folds_size){
+			pic_num = folds_size-1;
+		}
+		else{
+			pic_num +=1 ;
+		}
+
+		ppt_hold.setAttribute('title',pic_num.toString());
+		var url_path = $('#ppt_hold').css('background-image');
+		var oppo_path = url_path.match('ppt_barrage/(.*?)"')[1];
+		oppo_path = oppo_path.replace(/[0-9]\d*.jpg/,pic_num.toString() + '.jpg');
+		var command = './' + oppo_path;
+		command = 'url("' + command + '")';
+		$('#ppt_hold').css('background-image',command);
+		var input=document.getElementById("input");
+		input.value=pic_num + 1;
+	}
+
+			var path;
+			var files_number;
+			var obj_data;
+			function ajaxTest(filename) {
+				var data = {
+				"filename": filename
+				}
+			$.ajax({
+			type: 'POST',
+			url: './api/info_file',
+			async: false,
+			data: data,
+			dataType: 'json',
+			success: function(data) {
+				obj_data = data
+			}
+			});
+			}
+				var filename_and_number = {};
+				var ppt_catalog_num = 1;
+				var ppt_catalog_total ;
+				var ppt_catalog = document.getElementById('a');
+				var folds = {{ folds|safe }};
+				if (folds.length%5==0){
+					ppt_catalog_total = folds.length/5;
+				}
+				else{
+					ppt_catalog_total = Math.floor(folds.length/5) + 1;
+				}
+				var ul_array = [];
+				var result = [];
+				for(var i=0,len=folds.length;i<len;i+=5){
+					result.push(folds.slice(i,i+5));
+				}
+				for (var i = 0 ; i < result.length;i++){
+					var div_list = document.createElement('div');
+					for ( var j = 0 ; j < result[i].length;j++){
+						var the_p = document.createElement('button');
+						var text = document.createTextNode(result[i][j].toString());
+						ajaxTest(result[i][j].toString());
+						path = obj_data['path']
+						files_number = obj_data['number']
+						var file_name = obj_data['filename']
+						filename_and_number[file_name] = obj_data[file_name]
+						the_p.setAttribute('href',path);
+						the_p.setAttribute("style","width:100%;border:0;height:50px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap");
+						the_p.onclick = function (){
+							choosePPT(this);
+						};
+						the_p.appendChild(text);
+						div_list.appendChild(the_p);
+					}
+					ul_array.push(div_list);
+				}
+				ppt_catalog.appendChild(ul_array[1]);
+</script>
+
+<script>
+
+	 function choosePPT(which) {
+		 var file_path = which.getAttribute('href');
+		 var splits = file_path.split('/');
+		 var filename = splits[splits.length-1];
+		 folds_size = filename_and_number[filename];
+		 var set_path = file_path.toString() + '/0.jpg';
+		 var command = 'url(' + set_path + ')';
+		 $('#ppt_hold').css('background-image',command);
+		 var ppt_hold = document.getElementById('ppt_hold');
+		 ppt_hold.setAttribute('title','0');
+		 $('#danmu_list').empty();
+		 ajaxShowDbBarrage();
+		 $('.total_page').html("/"+folds_size);
+		 var input=document.getElementById("input");
+		input.value=1;
+	 }
+	 function showDbBarrage(barrage_text){
+		var text = barrage_text;
+		var color = document.getElementById('color').value;
+		var position = document.getElementById('position').value;
+		var time = $('#danmu').data("nowtime")+5;
+		var size =document.getElementById('text_size').value;
+		var text_obj='{ "text":"'+text+'","color":"'+color+'","size":"'+size+'","position":"'+position+'","time":'+time+'}';
+		var text_obj='{ "text":"'+text+'","color":"'+color+'","size":"'+size+'","position":"'+position+'","time":'+time+',"isnew":""}';
+		var new_obj=eval('('+text_obj+')');
+		$('#danmu').danmu("add_danmu",new_obj);
+	 }
+
+	 function showBarrage() {
+		 $('#danmu_list').empty();
+		 ajaxShowDbBarrage();
+	 }
+
+	 function foldAdd() {
+			if (ppt_catalog_num + 1 == ppt_catalog_total){
+				ppt_catalog_num = ppt_catalog_num;
+			}
+			else{
+				ppt_catalog_num += 1;
+			}
+			var a = document.getElementById('a');
+			$('#a').empty();
+			a.appendChild(ul_array[ppt_catalog_num]);
+			var btn=document.getElementByTagName('button');
+
+		}
+		foldSub();
+	function foldSub() {
+		if (ppt_catalog_num - 1 < 0){
+			ppt_catalog_num = ppt_catalog_num;
+		}
+		else{
+			ppt_catalog_num -= 1;
+		}
+		var a = document.getElementById('a');
+		$('#a').empty()
+		a.appendChild(ul_array[ppt_catalog_num]);
+	}
+</script>
 </body>
 </html>
