@@ -61,6 +61,7 @@ function showAllListadmin(){
 			$(btn).attr('href','#');
 			$(btn).addClass('btn');
 			$(btn).css('width','100%');
+			$(td).css('width','14.2%');
 			$(btn).addClass(s[statuses[i]]);
 			td.appendChild(btn);
 			tr.appendChild(td);
@@ -101,6 +102,7 @@ function createInfo(text,tr){
 	btn.innerHTML=text;
 	$(btn).attr('href','#');
 	$(btn).addClass('btn');
+	$(td).css('width','12.5%');
 	$(btn).css('width','100%');
 	$(btn).css('height','100%');
 	$(btn).css('background','white');
