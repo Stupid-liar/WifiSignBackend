@@ -110,8 +110,8 @@ function createInfo(text,tr){
 	$(btn).css('border','1px solid black');
 	$(btn).css('border-radius','0');
 	var maxNum=$(btn).html();
-		if(maxNum.length>15){
-			$(btn).html(maxNum.substr(0,15)+"...")
+		if(maxNum.length>25){
+			$(btn).html(maxNum.substr(0,25)+"...")
 	}
 	btn.setAttribute('title',text);
 	td.appendChild(btn);
