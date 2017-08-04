@@ -5,10 +5,10 @@
     <head>
 
         <meta charset="utf-8">
-        <title>Fullscreen Login</title>
+        <title>WifiLogin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="description" content="Login in">
+        <meta name="author" content="500">
 
         <!-- CSS -->
         <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
@@ -26,16 +26,27 @@
     <body>
 
         <div class="page-container">
-            <h1>Login</h1>
-            <form action="index.html" method="post">
-                <input type="text" name="username" class="username" placeholder="Username">
-                <input type="text" name="nickname" class="nickname" placeholder="Nickname">
-                <input type="email" name="email" class="email" placeholder="E-mail">
-                <input type="password" name="password" class="password" placeholder="Password">
+            <h1 style="display:inline-block;width:80px;height:40px;border-bottom:5px solid #cccc00;cursor:pointer;">Regist</h1>&nbsp;&nbsp;&nbsp;&nbsp;<h1 style="display:inline-block;width:80px;height:40px;cursor:pointer;">Login</h1>
+			<div class="regist" style="display:block">
+				<form action="" method="post">
+					<input type="text" name="username" class="username" placeholder="Username">
+					<input type="text" name="nickname" class="nickname" placeholder="Nickname">
+					<input type="email" name="email" class="email" placeholder="E-mail">
+					<input type="password" name="password" class="password" placeholder="Password">
 
-                <button type="submit">Sign me in</button>
-                <div class="error"><span>+</span></div>
-            </form>
+					<button type="submit">Regist</button>
+					<div class="error"><span>+</span></div>
+				</form>
+			</div>
+			<div class="login" style="display:none;">
+				<form action="" method="post">
+					<input type="email" name="email" class="email" placeholder="E-mail">
+					<input type="password" name="password" class="password" placeholder="Password">
+
+					<button type="submit">Login</button>
+					<div class="error"><span>+</span></div>
+				</form>
+			</div>
         </div>
 
         <!-- Javascript -->
@@ -43,7 +54,23 @@
         <script src="assets/js/supersized.3.2.7.min.js"></script>
         <script src="assets/js/supersized-init.js"></script>
         <script src="assets/js/scripts.js"></script>
-
+		<script>
+			var aH = document.querySelectorAll("h1");
+			var regist = document.querySelector(".regist");
+			var login = document.querySelector(".login");
+			aH[0].onclick = function() {
+				regist.style.display="block";
+				login.style.display="none";
+				this.style.borderBottom="5px solid #cccc00";
+				aH[1].style.borderBottom="";
+			}
+			aH[1].onclick = function() {
+				regist.style.display="none";
+				login.style.display="block";
+				this.style.borderBottom="5px solid #cccc00";
+				aH[0].style.borderBottom="";
+			}
+		</script>
     </body>
 
 </html>
