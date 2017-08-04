@@ -443,7 +443,7 @@
                                 </div>
                                 <div class="text-center ctr" style="position: absolute;top:690px;margin: 5px;width: 100%;">
                                     <button type="button"  onclick="resumer() ">开始</button>&nbsp;
-                                    <button type="button"  onclick="showBarrage() ">重放</button>
+                                   <button type="button"  onclick="showBarrage() ">重放</button>
                                     <button type="button"  onclick="pauser()">暂停</button>  &nbsp;
                                     开关:<input type='checkbox' checked='checked' id='ishide' value='is' onchange='changehide()'> &nbsp;
                                     透明度:<input type="range" name="op" id="op" onchange="op()" value="50"style="width:100px;display:inline-block;vertical-align:middle;">
@@ -876,6 +876,7 @@
 	function resumer(){
 	  $('#danmu').danmu('danmu_resume');
 	}
+	
 
 	function stoper(){
 	  $('#danmu').danmu('danmu_stop');
@@ -958,6 +959,7 @@
 	}
 
 	function sendBarrage(){
+		resumer();
 	  var text = document.getElementById('text').value;
 	  var color = document.getElementById('color').value;
 	  var position = document.getElementById('position').value;
