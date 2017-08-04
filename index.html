@@ -464,7 +464,7 @@
                                         <option value="2">底端</option>
                                     </select>
                                     <input type="textarea" id="text" max=300 />
-                                    <button type="button"  onclick="send()">发送</button>
+                                    <button type="button"  onclick="sendBarrage()">发送</button>
                                 </div>
 							</div>
 						</div>
@@ -502,7 +502,7 @@
 <!--添加侧边栏js-->
 <script src='./assets/js/side.js'></script>
 <!--添加弹幕js-->
-<script src='./assets/js/danmu.js'></script>
+
 <script src="./static/js/jquery.danmu.js"></script>
 <!--添加js结束-->
 <script>
@@ -860,10 +860,10 @@
 		timedCount();
 		var first=true;
 
-	function timedCount() {
+	/*function timedCount() {
 	   $("#time").text($('#danmu').data("nowtime"));
 	   t=setTimeout("timedCount()",50);
-		}
+		}*/
 
 	function starter(){
 	  $('#danmu').danmu('danmu_start');
@@ -957,7 +957,7 @@
 
 	}
 
-	function send(){
+	function sendBarrage(){
 	  var text = document.getElementById('text').value;
 	  var color = document.getElementById('color').value;
 	  var position = document.getElementById('position').value;
