@@ -28,22 +28,22 @@
         <div class="page-container">
             <h1 style="display:inline-block;width:100px;height:40px;border-bottom:5px solid #cccc00;cursor:pointer;">Register</h1>&nbsp;&nbsp;&nbsp;&nbsp;<h1 style="display:inline-block;width:80px;height:40px;cursor:pointer;">Login</h1>
 			<div class="register" style="display:block">
-				<form action="" method="post">
+				<form action="" method="">
 					<input type="text" name="username" class="username" placeholder="Username">
 					<input type="text" name="nickname" class="nickname" placeholder="Nickname">
 					<input type="email" name="email" class="email" placeholder="E-mail">
 					<input type="password" name="password" class="password" placeholder="Password">
 					<input type="text" name="class_id" class="class_id" placeholder="Class">
-					<button type="button" onclick="check_stu()">Register</button>
+					<button type="button" onclick="register_fun()">Register</button>
 					<div class="error"><span>+</span></div>
 				</form>
 			</div>
 			<div class="login" style="display:none;">
-				<form action="" method="post">
+				<form action="" method="">
 					<input type="email" name="email" class="email" placeholder="E-mail">
 					<input type="password" name="password" class="password" placeholder="Password">
 
-					<button type="submit">Login</button>
+					<button type="button" onclick="login_fun()">Login</button>
 					<div class="error"><span>+</span></div>
 				</form>
 			</div>
@@ -72,13 +72,40 @@
 			}
 
 
-			function check_stu(){
+			function register_fun(){
 				var data = $('.page-container .register form');
 				var username = data.find('.username').val();
 				var password = data.find('.password').val();
 				var nickname = data.find('.nickname').val();
 				var email = data.find('.email').val();
 				var classId = data.find('.class_id').val();
+				if(username == '') {
+					data.find(".error").css('display', 'block');
+					data.find(".error").css('top', '27px');
+					return false;
+				}
+				if(nickname == '') {
+					data.find(".error").css('display', 'block');
+					data.find(".error").css('top', '96px');	
+					return false;
+				}
+				if(email == '') {
+					data.find(".error").css('display', 'block');
+					data.find(".error").css('top', '165px');	
+					return false;
+				}
+				if(password == '') {
+					data.find(".error").css('display', 'block');
+					data.find(".error").css('top', '234px');
+					return false;
+				}
+				if(classId == '') {
+					data.find(".error").css('display', 'block');
+					data.find(".error").css('top', '304px');
+					return false;
+				}
+
+
 				$.ajax({
 					url: 'http://192.168.1.101:9000/auth/register', //在这里提填写你的地址
 					async: false,
@@ -90,18 +117,59 @@
 						  'email': email
 					},
 					type:'get',
-					jsonp:"callback_data", 
+					jsonp:"callback_register", 
 					crossDomain: true,
-					jsonpCallback:"callback_data",
+					jsonpCallback:"callback_register",
 					success: function (json_str) {
 						if(json_str['status']==1){
 							alert("恭喜你注册成功了");
+							register.style.display="none";
+							login.style.display="block";
+							aH[1].style.borderBottom="5px solid #cccc00";
+							aH[0].style.borderBottom="";
 						}if(json_str['status']==1000){
 							alert("已经注册了");
 						}
 					
 					}
 					});
+			}
+
+			function login_fun(){
+				var data = $('.page-container .login form');				
+				var password = data.find('.password').val();				
+				var email = data.find('.email').val();	
+				if(email == '') {
+					data.find(".error").css('display', 'block');
+					data.find(".error").css('top', '27px');	
+					return false;
+				}
+				if(password == '') {
+					data.find(".error").css('display', 'block');
+					data.find(".error").css('top', '96px');
+					return false;
+				}
+				$.ajax({
+					url: 'http://192.168.1.101:9000/auth/login', //在这里提填写你的地址
+					async: false,
+					dataType: 'jsonp',
+					data:{'password': password,					  
+						  'email': email
+						},
+					type:'get',
+					jsonp:"callback_login", 
+					crossDomain: true,
+					jsonpCallback:"callback_login",
+					success: function (json_str) {
+						if(json_str['status']==1){
+							alert("恭喜你登录成功了");
+							location.href="http://www.baidu.com";
+						}
+					
+					}
+					});
+			
+			
 			}
 		</script>
     </body>
