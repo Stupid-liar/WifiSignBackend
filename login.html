@@ -34,7 +34,7 @@
 					<input type="email" name="email" class="email" placeholder="E-mail">
 					<input type="password" name="password" class="password" placeholder="Password">
 					<input type="text" name="class_id" class="class_id" placeholder="Class">
-					<button type="submit">Register</button>
+					<button type="button" onclick="check_stu()">Register</button>
 					<div class="error"><span>+</span></div>
 				</form>
 			</div>
@@ -69,6 +69,36 @@
 				login.style.display="block";
 				this.style.borderBottom="5px solid #cccc00";
 				aH[0].style.borderBottom="";
+			}
+
+
+			function check_stu(){
+				var data = $('.page-container .register form');
+				var username = data.find('.username').val();
+				var password = data.find('.password').val();
+				var nickname = data.find('.nickname').val();
+				var email = data.find('.email').val();
+				var classId = data.find('.class_id').val();
+				$.ajax({
+					url: 'http://192.168.1.101:9000/auth/register', //在这里提填写你的地址
+					async: false,
+					dataType: 'jsonp',
+					data:{'username': 'username',
+						  'password': 'password',
+						  'nickname': 'nickname',
+						  'class_id': 'classId',
+						  'email': 'email'
+					},
+					type:'post',
+					jsonp:"callback_data", 
+					crossDomain: true,
+					jsonpCallback:"callback_data",
+					success: function (json_str) {
+						if(json_str['status']=="1"){
+							alert("恭喜你注册成功了");
+						}
+					}
+					});
 			}
 		</script>
     </body>
