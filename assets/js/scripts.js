@@ -1,7 +1,7 @@
 
 jQuery(document).ready(function() {
 
-    $('.page-container .regist form').submit(function(){
+    $('.page-container .register form').submit(function(){
 		
         var username = $(this).find('.username').val();
         var password = $(this).find('.password').val();

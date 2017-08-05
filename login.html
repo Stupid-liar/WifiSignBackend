@@ -26,15 +26,15 @@
     <body>
 
         <div class="page-container">
-            <h1 style="display:inline-block;width:80px;height:40px;border-bottom:5px solid #cccc00;cursor:pointer;">Regist</h1>&nbsp;&nbsp;&nbsp;&nbsp;<h1 style="display:inline-block;width:80px;height:40px;cursor:pointer;">Login</h1>
-			<div class="regist" style="display:block">
+            <h1 style="display:inline-block;width:100px;height:40px;border-bottom:5px solid #cccc00;cursor:pointer;">Register</h1>&nbsp;&nbsp;&nbsp;&nbsp;<h1 style="display:inline-block;width:80px;height:40px;cursor:pointer;">Login</h1>
+			<div class="register" style="display:block">
 				<form action="" method="post">
 					<input type="text" name="username" class="username" placeholder="Username">
 					<input type="text" name="nickname" class="nickname" placeholder="Nickname">
 					<input type="email" name="email" class="email" placeholder="E-mail">
 					<input type="password" name="password" class="password" placeholder="Password">
 					<input type="text" name="class_id" class="class_id" placeholder="Class">
-					<button type="submit">Regist</button>
+					<button type="submit">Register</button>
 					<div class="error"><span>+</span></div>
 				</form>
 			</div>
@@ -56,16 +56,16 @@
         <script src="assets/js/scripts.js"></script>
 		<script>
 			var aH = document.querySelectorAll("h1");
-			var regist = document.querySelector(".regist");
+			var register = document.querySelector(".register");
 			var login = document.querySelector(".login");
 			aH[0].onclick = function() {
-				regist.style.display="block";
+				register.style.display="block";
 				login.style.display="none";
 				this.style.borderBottom="5px solid #cccc00";
 				aH[1].style.borderBottom="";
 			}
 			aH[1].onclick = function() {
-				regist.style.display="none";
+				register.style.display="none";
 				login.style.display="block";
 				this.style.borderBottom="5px solid #cccc00";
 				aH[0].style.borderBottom="";
