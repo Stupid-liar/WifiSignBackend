@@ -83,20 +83,23 @@
 					url: 'http://192.168.1.101:9000/auth/register', //在这里提填写你的地址
 					async: false,
 					dataType: 'jsonp',
-					data:{'username': 'username',
-						  'password': 'password',
-						  'nickname': 'nickname',
-						  'class_id': 'classId',
-						  'email': 'email'
+					data:{'username': username,
+						  'password': password,
+						  'nickname': nickname,
+						  'class_id': classId,
+						  'email': email
 					},
-					type:'post',
+					type:'get',
 					jsonp:"callback_data", 
 					crossDomain: true,
 					jsonpCallback:"callback_data",
 					success: function (json_str) {
-						if(json_str['status']=="1"){
+						if(json_str['status']==1){
 							alert("恭喜你注册成功了");
+						}if(json_str['status']==1000){
+							alert("已经注册了");
 						}
+					
 					}
 					});
 			}
