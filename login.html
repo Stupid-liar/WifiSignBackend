@@ -121,17 +121,17 @@
 					crossDomain: true,
 					jsonpCallback:"callback_register",
 					success: function (json_str) {
-						if(json_str['status']==1){
-							alert("恭喜你注册成功了");
-							register.style.display="none";
-							login.style.display="block";
-							aH[1].style.borderBottom="5px solid #cccc00";
-							aH[0].style.borderBottom="";
-						}if(json_str['status']==1000){
-							alert("已经注册了");
+							if(json_str['status']==1){
+								alert("恭喜你注册成功了");
+								register.style.display="none";
+								login.style.display="block";
+								aH[1].style.borderBottom="5px solid #cccc00";
+								aH[0].style.borderBottom="";
+							}
+							else{
+								alert(json_str['message']);
+							}								
 						}
-					
-					}
 					});
 			}
 
@@ -164,6 +164,9 @@
 						if(json_str['status']==1){
 							alert("恭喜你登录成功了");
 							location.href="http://www.baidu.com";
+						}
+						else{
+							alert(json_str['message']);
 						}
 					
 					}
