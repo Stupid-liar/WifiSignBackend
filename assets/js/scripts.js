@@ -7,6 +7,7 @@ jQuery(document).ready(function() {
         var password = $(this).find('.password').val();
 		var nickname = $(this).find('.nickname').val();
 		var email = $(this).find('.email').val();
+		var classId = $(this).find('.class_id').val();
         if(username == '') {
             $(this).find('.error').fadeOut('fast', function(){
                 $(this).css('top', '27px');
@@ -41,6 +42,15 @@ jQuery(document).ready(function() {
             });
             $(this).find('.error').fadeIn('fast', function(){
                 $(this).parent().find('.password').focus();
+            });
+            return false;
+        }
+		if(classId == '') {
+            $(this).find('.error').fadeOut('fast', function(){
+                $(this).css('top', '304px');
+            });
+            $(this).find('.error').fadeIn('fast', function(){
+                $(this).parent().find('.class_id').focus();
             });
             return false;
         }
