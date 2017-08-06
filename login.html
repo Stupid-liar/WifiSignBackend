@@ -1,30 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="en" class="no-js">
-
     <head>
-
         <meta charset="utf-8">
         <title>WifiLogin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Login in">
         <meta name="author" content="500">
-
         <!-- CSS -->
         <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
         <link rel="stylesheet" href="assets/css/reset.css">
         <link rel="stylesheet" href="assets/css/supersized.css">
         <link rel="stylesheet" href="assets/css/style.css">
-
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-
     </head>
-
-    <body>
-
+    <body >
         <div class="page-container">
             <h1 style="display:inline-block;width:100px;height:40px;border-bottom:5px solid #cccc00;cursor:pointer;">Register</h1>&nbsp;&nbsp;&nbsp;&nbsp;<h1 style="display:inline-block;width:80px;height:40px;cursor:pointer;">Login</h1>
 			<div class="register" style="display:block">
@@ -42,7 +34,6 @@
 				<form action="" method="">
 					<input type="email" name="email" class="email" placeholder="E-mail">
 					<input type="password" name="password" class="password" placeholder="Password">
-
 					<button type="button" onclick="login_fun()">Login</button>
 					<div class="error"><span>+</span></div>
 				</form>
@@ -53,8 +44,6 @@
         <script src="assets/js/jquery-1.8.2.min.js"></script>
         <script src="assets/js/supersized.3.2.7.min.js"></script>
         <script src="assets/js/supersized-init.js"></script>
-        <script src="assets/js/scripts.js"></script>
-		<!-- <script src="assets/js/cookie.js"></script> -->
 		<script>
 			var aH = document.querySelectorAll("h1");
 			var register = document.querySelector(".register");
@@ -71,7 +60,6 @@
 				this.style.borderBottom="5px solid #cccc00";
 				aH[0].style.borderBottom="";
 			}
-
 
 			function register_fun(){
 				var data = $('.page-container .register form');
@@ -163,37 +151,14 @@
 					jsonpCallback:"callback_login",
 					success: function (json_str) {
 						if(json_str['status']==1){
-							alert("恭喜你登录成功了");
-							var id = getCookie("username");
-						
-							//var all = getCookie("192.168.1.101")
-							alert( id );
-							
+							alert("恭喜你登录成功了");														
 						}
 						else{
 							alert(json_str['message']);
-						}
-					
+						}				
 					}
-					});
-			
-			
-			}
-
-			function getCookie(name){
-				var strcookie = document.cookie;//获取cookie字符串
-				var arrcookie = strcookie.split("; ");//分割
-				//遍历匹配
-				for ( var i = 0; i < arrcookie.length; i++) {
-					var arr = arrcookie[i].split("=");
-						if (arr[0] == name){
-						return arr[0];
-						}
-				}
-				return "";
-			}
-							
-
+				});		
+			};										
 		</script>
     </body>
 
