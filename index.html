@@ -502,9 +502,25 @@
 <!--添加侧边栏js-->
 <script src='./assets/js/side.js'></script>
 <!--添加弹幕js-->
-
 <script src="./static/js/jquery.danmu.js"></script>
 <!--添加js结束-->
+<script>
+$(document).ready(function(){
+		$.ajax({
+			url: 'http://119.29.184.156:9000/admin/list', //在这里提填写你的地址
+			async: false,
+			dataType: 'jsonp',
+			data:{'student_name':"万"},
+			type:'get',
+			jsonp:"callback_info", 
+			crossDomain: true,
+			jsonpCallback:"callback_info",
+			success: function (json_str) {
+				location.href="http://www.baidu.com";
+			}
+		});
+	});
+</script>
 <script>
 	//对学生名单以及未到学生名单的展示
 		var object_js;
